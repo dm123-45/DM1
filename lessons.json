@@ -1,0 +1,102 @@
+[
+  {
+    "subject": "English",
+    "location": "Oxford",
+    "price": 22,
+    "spaces": 5,
+    "teacher": "Ms Smith",
+    "room": "B2",
+    "description": "Reading, comprehension & writing.",
+    "thumb": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=60"
+  },
+  {
+    "subject": "Science",
+    "location": "Bristol",
+    "price": 28,
+    "spaces": 5,
+    "teacher": "Dr Green",
+    "room": "C3",
+    "description": "Hands-on science experiments.",
+    "thumb": "https://images.unsplash.com/photo-1531219432768-3f2b5b6a3a9f?auto=format&fit=crop&w=400&q=60"
+  },
+  {
+    "subject": "History",
+    "location": "York",
+    "price": 18,
+    "spaces": 5,
+    "teacher": "Mrs Jones",
+    "room": "D1",
+    "description": "Explore the past and civilisations.",
+    "thumb": "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=60"
+  },
+  {
+    "subject": "Geography",
+    "location": "London",
+    "price": 20,
+    "spaces": 5,
+    "teacher": "Mr Lee",
+    "room": "E2",
+    "description": "Maps, climates, and cultures.",
+    "thumb": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=400&q=60"
+  },
+  {
+    "subject": "Art",
+    "location": "Bristol",
+    "price": 19,
+    "spaces": 5,
+    "teacher": "Ms Turner",
+    "room": "F3",
+    "description": "Drawing and painting techniques.",
+    "thumb": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=60"
+  },
+  {
+    "subject": "Music",
+    "location": "Oxford",
+    "price": 24,
+    "spaces": 5,
+    "teacher": "Mr Davis",
+    "room": "G1",
+    "description": "Instruments and musical theory.",
+    "thumb": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=400&q=60"
+  },
+  {
+    "subject": "Physical Education",
+    "location": "London",
+    "price": 21,
+    "spaces": 5,
+    "teacher": "Coach Ray",
+    "room": "Hall",
+    "description": "Fitness, team sports & skills.",
+    "thumb": "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=60"
+  },
+  {
+    "subject": "Computer Science",
+    "location": "Cambridge",
+    "price": 30,
+    "spaces": 5,
+    "teacher": "Ms Code",
+    "room": "Lab 1",
+    "description": "Intro to programming and logic.",
+    "thumb": "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=400&q=60"
+  },
+  {
+    "subject": "Drama",
+    "location": "York",
+    "price": 17,
+    "spaces": 5,
+    "teacher": "Mrs Hale",
+    "room": "Studio",
+    "description": "Acting, improv & stagecraft.",
+    "thumb": "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=400&q=60"
+  },
+  {
+    "subject": "Mathematics",
+    "location": "London",
+    "price": 25,
+    "spaces": 5,
+    "teacher": "Mr Adams",
+    "room": "A1",
+    "description": "Algebra and geometry fundamentals.",
+    "thumb": "https://images.unsplash.com/photo-1526378724216-99b7a7e3beba?auto=format&fit=crop&w=400&q=60"
+  }
+]

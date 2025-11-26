@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "After School Program API - CST3144 Coursework",
+		"description": "Complete API collection for After School Program coursework. Tests all required endpoints: GET lessons, POST orders, PUT lesson updates, and search functionality.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. GET All Lessons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/lessons",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["lessons"]
+				},
+				"description": "Retrieves all lessons from the database. Returns an array of lesson objects with subject, location, price, spaces, teacher, room, description, and thumbnail."
+			},
+			"response": []
+		},
+		{
+			"name": "2. POST Create Order (Checkout)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"studentName\": \"John Doe\",\n  \"studentId\": \"M12345678\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"phone\": \"1234567890\",\n  \"email\": \"john.doe@example.com\",\n  \"payment\": \"card\",\n  \"card\": {\n    \"number\": \"4111111111111111\",\n    \"expiry\": \"12/25\",\n    \"cvv\": \"123\"\n  },\n  \"items\": [\n    {\n      \"id\": 1,\n      \"subject\": \"Mathematics\",\n      \"qty\": 2,\n      \"price\": 25\n    },\n    {\n      \"id\": 2,\n      \"subject\": \"Science\",\n      \"qty\": 1,\n      \"price\": 28\n    }\n  ],\n  \"total\": 78,\n  \"createdAt\": \"2024-01-15T10:30:00.000Z\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/checkout",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["checkout"]
+				},
+				"description": "Creates a new order in the database. Saves student information, ordered lessons, payment details, and total amount."
+			},
+			"response": []
+		},
+		{
+			"name": "3. PUT Update Lesson Spaces",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"spaces\": 3\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/lessons/1",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["lessons", "1"]
+				},
+				"description": "Updates the available spaces for a specific lesson. Replace '1' with the actual lesson ID."
+			},
+			"response": []
+		},
+		{
+			"name": "4. GET Search Lessons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/search?q=math",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["search"],
+					"query": [
+						{
+							"key": "q",
+							"value": "math"
+						}
+					]
+				},
+				"description": "Searches for lessons matching the query. Searches across subject, location, price, and teacher fields."
+			},
+			"response": []
+		},
+		{
+			"name": "5. GET Orders by Student ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/orders?studentId=M12345678",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["orders"],
+					"query": [
+						{
+							"key": "studentId",
+							"value": "M12345678"
+						}
+					]
+				},
+				"description": "Retrieves all orders for a specific student. Used for order history feature."
+			},
+			"response": []
+		},
+		{
+			"name": "6. POST Seed Database",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/seed",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["seed"]
+				},
+				"description": "Seeds the database with initial lesson data from lessons.json. Clears existing lessons and inserts 10 new lessons."
+			},
+			"response": []
+		},
+		{
+			"name": "7. GET Home Route",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": [""]
+				},
+				"description": "Tests if the server is running. Returns a confirmation message."
+			},
+			"response": []
+		},
+		{
+			"name": "8. GET Search - Location (London)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/search?q=London",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["search"],
+					"query": [
+						{
+							"key": "q",
+							"value": "London"
+						}
+					]
+				},
+				"description": "Tests search by location. Returns all lessons in London."
+			},
+			"response": []
+		},
+		{
+			"name": "9. POST Order - Cash Payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"studentName\": \"Jane Smith\",\n  \"studentId\": \"M87654321\",\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Smith\",\n  \"phone\": \"9876543210\",\n  \"email\": \"jane.smith@example.com\",\n  \"payment\": \"cash\",\n  \"card\": null,\n  \"items\": [\n    {\n      \"id\": 3,\n      \"subject\": \"History\",\n      \"qty\": 1,\n      \"price\": 18\n    }\n  ],\n  \"total\": 18,\n  \"createdAt\": \"2024-01-15T11:00:00.000Z\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/checkout",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["checkout"]
+				},
+				"description": "Creates an order with cash payment. Tests alternative payment method."
+			},
+			"response": []
+		},
+		{
+			"name": "10. PUT Update - Set Spaces to 0",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"spaces\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/lessons/2",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["lessons", "2"]
+				},
+				"description": "Updates lesson spaces to 0 (sold out). Tests sold-out scenario."
+			},
+			"response": []
+		},
+		{
+			"name": "11. GET Search - Price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/search?q=25",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["search"],
+					"query": [
+						{
+							"key": "q",
+							"value": "25"
+						}
+					]
+				},
+				"description": "Tests search by price. Returns lessons with price containing '25'."
+			},
+			"response": []
+		},
+		{
+			"name": "12. GET Search - Empty Query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/search?q=",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["search"],
+					"query": [
+						{
+							"key": "q",
+							"value": ""
+						}
+					]
+				},
+				"description": "Tests search with empty query. Should return empty array."
+			},
+			"response": []
+		}
+	]
+}

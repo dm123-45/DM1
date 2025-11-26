@@ -1,161 +1,112 @@
-# After School Program - Full Stack Application
+# After School Program - Backend API
 
-A complete full-stack web application for managing after-school lessons, built with Express.js, MongoDB, and Vue.js.
+Express.js REST API for the After School Lesson Booking System with MongoDB.
 
-## 🏗️ Project Structure
+## 🚀 Live API
 
-```
-FullStackCoursework/
-├── express-backend/          # Backend API server
-│   ├── server.js            # Main server file
-│   ├── lessons.json         # Seed data for lessons
-│   └── package.json         # Backend dependencies
-├── frontend/                # Frontend application
-│   ├── index3.html         # Main application (Vue 2 CDN)
-│   └── src/                # Vue 3 + Vite project (alternative)
-└── mongodb-exports/         # Database exports
-```
+**Deployed URL**: [Add your Render.com/AWS URL here]
 
-## 🚀 Quick Start
+Example: `https://your-app.onrender.com/lessons`
 
-### Prerequisites
+## 📋 Features
 
-1. **Node.js** (v14 or higher)
-2. **MongoDB** (v4.4 or higher) - Must be running locally
-3. A modern web browser
+- RESTful API with Express.js
+- MongoDB database integration
+- CORS enabled for frontend communication
+- Request logging middleware
+- Static file serving for images
+- Comprehensive error handling
 
-### Step 1: Install MongoDB
+## 🛠️ Technologies
 
-**Windows:**
-```bash
-# Download from: https://www.mongodb.com/try/download/community
-# Or use Chocolatey:
-choco install mongodb
+- Node.js
+- Express.js
+- MongoDB (Native Driver)
+- CORS
+- dotenv
 
-# Start MongoDB service:
-net start MongoDB
-```
-
-**Mac:**
-```bash
-brew tap mongodb/brew
-brew install mongodb-community
-brew services start mongodb-community
-```
-
-**Linux:**
-```bash
-sudo apt-get install mongodb
-sudo systemctl start mongodb
-```
-
-### Step 2: Setup Backend
+## 📦 Installation
 
 ```bash
-# Navigate to backend directory
-cd express-backend
-
 # Install dependencies
 npm install
 
-# Start the server
+# Create .env file (optional)
+# Add: MONGODB_URI=your_mongodb_connection_string
+
+# Start development server
 npm run dev
+
+# Start production server
+npm start
 ```
 
-The backend server will start on **http://localhost:3000**
+## 🔗 API Endpoints
 
-### Step 3: Seed the Database
-
-Once the backend is running, seed the database with lesson data:
-
-**Option 1: Using curl**
-```bash
-curl -X POST http://localhost:3000/seed
-```
-
-**Option 2: Using browser**
-Open your browser and navigate to:
-```
-http://localhost:3000/seed
-```
-
-You should see a success message with the count of lessons added.
-
-### Step 4: Open the Frontend
-
-Simply open the HTML file in your browser:
-
-**Windows:**
-```bash
-start frontend/index3.html
-```
-
-**Mac:**
-```bash
-open frontend/index3.html
-```
-
-**Linux:**
-```bash
-xdg-open frontend/index3.html
-```
-
-Or manually open `frontend/index3.html` in your browser.
-
-## 📡 API Endpoints
-
-The backend provides the following REST API endpoints:
+### Lessons
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/lessons` | Get all lessons |
-| GET | `/search?q=query` | Search lessons by subject, location, or teacher |
-| POST | `/checkout` | Create a new order |
-| GET | `/orders?studentId=M00001234` | Get orders for a specific student |
 | PUT | `/lessons/:id` | Update lesson spaces |
+
+### Orders
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/checkout` | Create new order |
+| GET | `/orders?studentId=M12345678` | Get orders by student ID |
+
+### Search
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/search?q=query` | Search lessons |
+
+### Utility
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
 | POST | `/seed` | Seed database with initial data |
+| GET | `/` | Health check |
 
-### Example API Calls
+## 📝 API Examples
 
-**Get all lessons:**
+### Get All Lessons
 ```bash
 curl http://localhost:3000/lessons
 ```
 
-**Search lessons:**
-```bash
-curl http://localhost:3000/search?q=math
-```
-
-**Create an order:**
+### Create Order
 ```bash
 curl -X POST http://localhost:3000/checkout \
   -H "Content-Type: application/json" \
   -d '{
     "studentName": "John Doe",
-    "studentId": "M00001234",
-    "items": [{"id": "1", "subject": "Math", "qty": 1, "price": 25}],
-    "total": 25
+    "studentId": "M12345678",
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "1234567890",
+    "email": "john@example.com",
+    "payment": "card",
+    "items": [
+      {"id": 1, "subject": "Math", "qty": 2, "price": 25}
+    ],
+    "total": 50
   }'
 ```
 
-## 🎨 Frontend Features
+### Update Lesson Spaces
+```bash
+curl -X PUT http://localhost:3000/lessons/1 \
+  -H "Content-Type: application/json" \
+  -d '{"spaces": 3}'
+```
 
-- **Student Login**: Secure login with Student ID validation (format: M########)
-- **Lesson Browsing**: View all available lessons with filtering and sorting
-- **Search**: Real-time search across subjects, locations, and teachers
-- **Shopping Cart**: Add/remove lessons, adjust quantities
-- **Checkout**: Complete order with student information
-- **Order History**: View past orders
-- **Responsive Design**: Works on desktop and mobile devices
-- **Dark/Light Theme**: Toggle between themes
-- **Grid/List View**: Switch between layout modes
-
-### Test Credentials
-
-Use the "Quick fill" button or enter:
-- **Name**: Tanya Murombe
-- **Student ID**: M00001234
+### Search Lessons
+```bash
+curl http://localhost:3000/search?q=math
+```
 
 ## 🗄️ Database Schema
 
@@ -170,7 +121,7 @@ Use the "Quick fill" button or enter:
   "teacher": String,
   "room": String,
   "description": String,
-  "thumb": String (URL)
+  "thumb": String
 }
 ```
 
@@ -187,17 +138,108 @@ Use the "Quick fill" button or enter:
   "payment": String,
   "items": Array,
   "total": Number,
-  "createdAt": String (ISO date)
+  "createdAt": String
 }
 ```
 
-## 🛠️ Troubleshooting
+## 🔧 Environment Variables
 
-### MongoDB Connection Issues
+Create a `.env` file:
 
-**Error: "MongoServerError: connect ECONNREFUSED"**
+```env
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017
+DB_NAME=afterschoolDB
+```
 
-Solution: Make sure MongoDB is running
+For MongoDB Atlas:
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/
+DB_NAME=afterschoolDB
+```
+
+## 🧪 Testing
+
+### Using Postman
+Import the collection from `../postman-collection/coursework_collection.json`
+
+### Using curl
+See API Examples section above
+
+## 🚢 Deployment
+
+### Render.com
+1. Create new Web Service
+2. Connect GitHub repository
+3. Set build command: `npm install`
+4. Set start command: `npm start`
+5. Add environment variables (MONGODB_URI)
+6. Deploy
+
+### AWS Lambda
+1. Package application
+2. Create Lambda function
+3. Configure API Gateway
+4. Set environment variables
+5. Deploy
+
+## 📊 Middleware
+
+### Logger Middleware
+Logs all incoming requests:
+```
+[2024-01-15 10:30:00] GET /lessons
+[2024-01-15 10:30:05] POST /checkout
+```
+
+### Static File Middleware
+Serves images from `/images` directory
+
+### CORS Middleware
+Enables cross-origin requests from frontend
+
+## 🔒 Security
+
+- Input validation on all endpoints
+- MongoDB injection prevention
+- CORS configuration
+- Error handling without exposing internals
+
+## 📝 Notes
+
+- Server runs on port 3000 by default
+- MongoDB must be running locally or use Atlas
+- Seed database before first use: `POST /seed`
+- All responses are in JSON format
+
+## 🛠️ Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run with auto-reload
+npm run dev
+
+# Run tests (if available)
+npm test
+```
+
+## 📄 File Structure
+
+```
+express-backend/
+├── server.js           # Main server file
+├── lessons.json        # Seed data
+├── package.json        # Dependencies
+├── .env               # Environment variables (create this)
+├── .gitignore         # Git ignore rules
+└── README.md          # This file
+```
+
+## 🐛 Troubleshooting
+
+### MongoDB Connection Error
 ```bash
 # Windows
 net start MongoDB
@@ -210,10 +252,6 @@ sudo systemctl start mongodb
 ```
 
 ### Port Already in Use
-
-**Error: "EADDRINUSE: address already in use :::3000"**
-
-Solution: Kill the process using port 3000
 ```bash
 # Windows
 netstat -ano | findstr :3000
@@ -223,86 +261,10 @@ taskkill /PID <PID> /F
 lsof -ti:3000 | xargs kill -9
 ```
 
-### CORS Issues
+## 👥 Author
 
-If you see CORS errors in the browser console, ensure:
-1. Backend server is running on port 3000
-2. CORS is enabled in server.js (already configured)
-3. Frontend is accessing the correct URL
-
-### Lessons Not Loading
-
-1. Check if MongoDB is running
-2. Verify backend server is running on port 3000
-3. Seed the database using `/seed` endpoint
-4. Check browser console for errors
-5. Verify API endpoint in frontend matches backend
-
-## 📦 Dependencies
-
-### Backend
-- **express**: Web framework
-- **cors**: Enable CORS
-- **mongodb**: MongoDB driver
-- **dotenv**: Environment variables
-- **nodemon**: Development auto-reload
-
-### Frontend
-- **Vue 2**: JavaScript framework (CDN)
-- **Font Awesome**: Icons
-- **Inter Font**: Typography
-
-## 🔧 Development
-
-### Backend Development
-```bash
-cd express-backend
-npm run dev  # Starts with nodemon for auto-reload
-```
-
-### View Logs
-The backend logs all requests and database operations to the console.
-
-### Testing with Postman
-Import the collection from `postman-collection/coursework_collection.json` to test all API endpoints.
-
-## 📝 Environment Variables
-
-Create a `.env` file in the `express-backend` directory (optional):
-
-```env
-PORT=3000
-MONGODB_URI=mongodb://localhost:27017
-DB_NAME=afterschoolDB
-```
-
-## 🚢 Deployment
-
-### Backend Deployment (Render/Heroku)
-1. Update MongoDB URI to use cloud database (MongoDB Atlas)
-2. Set environment variables
-3. Deploy backend code
-
-### Frontend Deployment
-1. Host `index3.html` on any static hosting service
-2. Update `BACKEND_BASE` constant in the HTML file to point to deployed backend
+Full Stack Development Coursework - CST3144
 
 ## 📄 License
 
-This project is for educational purposes.
-
-## 👥 Contributors
-
-- Full Stack Development Team
-
-## 🆘 Support
-
-For issues or questions:
-1. Check the troubleshooting section
-2. Review browser console for errors
-3. Check backend server logs
-4. Verify MongoDB is running and accessible
-
----
-
-**Happy Coding! 🎉**
+Educational project for coursework submission.
